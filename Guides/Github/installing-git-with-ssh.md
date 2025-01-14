@@ -2,7 +2,7 @@
 
 This guide will walk you through the steps to install Git and configure it to use SSH for secure communication with GitHub. 
 You will need to have ssh agent installed to complete this tutorial. If you do not have it installed, follow the instructions 
-in [install-ssh](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/main/Guides/Github/install-ssh.md).
+in [install-ssh](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Guides/Github/install-ssh.md).
 
 ---
 
