@@ -40,12 +40,11 @@ SSH (Secure Shell) is a protocol used to securely access and manage remote machi
 ## Step 2: Install SSH
 
 ### **On Windows**
-1. Open PowerShell as Administrator.
-2. Install the OpenSSH client by typing:
-   ```bash
-   Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
-   ```
-3. Verify the installation by running:
+1. Open your settings
+2. Navigate to "System > Optional Features"
+3. Search for "OpenSSH Client"
+4. Select "Install"
+5. Verify the installation by running in your terminal:
    ```bash
    ssh -V
    ```
