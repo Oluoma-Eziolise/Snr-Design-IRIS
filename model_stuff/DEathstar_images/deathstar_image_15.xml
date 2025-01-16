@@ -1,0 +1,26 @@
+<annotation>
+	<folder>test_images</folder>
+	<filename>deathstar_image_15.png</filename>
+	<path>C:\Users\kiese\OneDrive\Desktop\TeamProjects\test_images\deathstar_image_15.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>64</width>
+		<height>64</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Death Star</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1</xmin>
+			<ymin>10</ymin>
+			<xmax>40</xmax>
+			<ymax>50</ymax>
+		</bndbox>
+	</object>
+</annotation>
