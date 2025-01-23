@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['Death Star']
+
+roboflow:
+  workspace: tp2-pe56o
+  project: deathstar-kebsz
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/tp2-pe56o/deathstar-kebsz/dataset/2
