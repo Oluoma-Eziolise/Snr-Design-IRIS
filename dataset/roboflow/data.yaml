@@ -1,6 +1,7 @@
-train: ../train/images
-val: ../valid/images
-test: ../test/images
+train: C:/Users/kiese/OneDrive/Documents/snrdes/Snr-Design-IRIS/dataset/roboflow/train/images
+val: C:/Users/kiese/OneDrive/Documents/snrdes/Snr-Design-IRIS/dataset/roboflow/valid/images
+test: C:/Users/kiese/OneDrive/Documents/snrdes/Snr-Design-IRIS/dataset/roboflow/test/images
+
 
 nc: 1
 names: ['Death Star']
