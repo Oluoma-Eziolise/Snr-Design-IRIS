@@ -2,7 +2,7 @@ import os
 import cv2
 import numpy as np
 
-# Function to process and crop red circles from an image
+# Function to detect and crop red circles from an image
 def detect_and_crop_red_circles(image_path, output_folder):
     # Load the image
     image = cv2.imread(image_path)
@@ -27,9 +27,9 @@ def detect_and_crop_red_circles(image_path, output_folder):
     # Detect circles using HoughCircles in the red-only masked image
     circles = cv2.HoughCircles(red_gray, cv2.HOUGH_GRADIENT, dp=1.2, minDist=50, param1=100, param2=30, minRadius=20, maxRadius=60)
 
-    cropped_images = []
     if circles is not None:
         circles = np.round(circles[0, :]).astype("int")
+
         for i, (x, y, r) in enumerate(circles):
             # Crop the area inside the circle
             x_min = max(0, x - r)
@@ -40,11 +40,9 @@ def detect_and_crop_red_circles(image_path, output_folder):
             cropped_circle = image[y_min:y_max, x_min:x_max]
 
             # Save the cropped image
-            output_image_path = os.path.join(output_folder, f"cropped_circle_{i}_{os.path.basename(image_path)}")
-            cv2.imwrite(output_image_path, cropped_circle)
-            cropped_images.append(output_image_path)
-
-    return cropped_images
+            cropped_circle_path = os.path.join(output_folder, f"cropped_circle_{i}_{os.path.basename(image_path)}")
+            cv2.imwrite(cropped_circle_path, cropped_circle)
+            print(f"[SAVED] Red circle detected! Cropped circle saved: {cropped_circle_path}")
 
 # Main function to process all images in a folder
 def process_images_in_folder(source_folder, output_folder):
@@ -55,22 +53,18 @@ def process_images_in_folder(source_folder, output_folder):
     for img_filename in os.listdir(source_folder):
         img_path = os.path.join(source_folder, img_filename)
 
-        # Check if it's an image (you can add more extensions as needed)
-        if img_filename.endswith(('.jpg', '.png', '.jpeg')):
+        # Check if it's an image
+        if img_filename.lower().endswith(('.jpg', '.png', '.jpeg')):
             print(f"Processing {img_filename}...")
 
             # Detect and crop red circles
-            cropped_images = detect_and_crop_red_circles(img_path, output_folder)
-
-            # Print the saved cropped images
-            for cropped_image in cropped_images:
-                print(f"Saved cropped image: {cropped_image}")
+            detect_and_crop_red_circles(img_path, output_folder)
 
     print("Processing complete.")
 
 # Set the input folder containing images and output folder for cropped images
-source_folder = './testImages/Output'  # Folder containing images to process
-output_folder = './cirlcleOutput'  # Folder to save cropped images
+source_folder = './testImages/output'  # Folder containing images to process
+output_folder = './circleOutput'  # Folder to save cropped images
 
 # Run the script
 process_images_in_folder(source_folder, output_folder)
