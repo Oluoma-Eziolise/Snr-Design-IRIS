@@ -1,7 +1,7 @@
 from roboflow import Roboflow
 rf = Roboflow(api_key="9eWUjNfqx796swfi6Fhu")
 project = rf.workspace().project("deathstar-kebsz")
-model = project.version(2).model
+model = project.version(3).model
 
 # infer on a local image
 print(model.predict("./dataset/roboflow/test/images/image_variation_10_jpg.rf.6273fe65a55ed27c53f361f71ad5dea9.jpg", confidence=40, overlap=30).json())
