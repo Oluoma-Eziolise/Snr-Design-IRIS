@@ -3,11 +3,12 @@
 ### What is IRIS?
 
 ### Current Workflow:
+*** Run `install_requirements.py` to get required packages***
 1. workflow.py 
     1. get images from folder `./testImages/input`
     2. use api call to roboflow to identfy Death Star Images and send to `./testImages/output`
 2. compress.py
-    1. Grab images from `./testImages/output`
+    1. Grab images from `./circleOutput`
     2. compress images and output to `./testImages/compressed_images`
 3. zipEncrypt.py
     1. get compressed images folder `./testImages/compressed_images`
