@@ -46,22 +46,7 @@ def copy_and_compress_folder(source_folder, compressed_folder):
 
     print("Compression complete!")
 
-def zip_folder(folder_path, zip_filename):
-    """Zip the entire folder."""
-    zip_path = os.path.join(zip_destination_parent, zip_filename)
-    os.makedirs(zip_destination_parent, exist_ok=True)  # Ensure ZIP output folder exists
-
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-        for root, _, files in os.walk(folder_path):
-            for file in files:
-                file_path = os.path.join(root, file)
-                arcname = os.path.relpath(file_path, folder_path)  # Maintain folder structure
-                zipf.write(file_path, arcname)
-
-    print(f"Folder zipped: {zip_path}")
-
-
 if __name__ == "__main__":
     copy_and_compress_folder(source_folder, compressed_folder)
-    zip_folder(compressed_folder, zip_filename)
+
     print("Process complete!")
