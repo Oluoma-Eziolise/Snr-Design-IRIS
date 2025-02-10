@@ -1,14 +1,20 @@
 # Snr-Design-IRIS
+
 ## Information
+
 ### What is IRIS?
 
-### Current Workflow:
-*** Run `install_requirements.py` to get required packages***
-1. workflow.py 
+### "Current Workflow:
+
+***Run `install_requirements.py` to get required packages***
+
+***WORK IN PROGRESS***
+
+1. workflow.py
     1. get images from folder `./testImages/input`
     2. use api call to roboflow to identfy Death Star Images and send to `./testImages/output`
 2. compress.py
-    1. Grab images from `./circleOutput`
+    1. Grab images from `./circleOutput`*(need to move to server side)*
     2. compress images and output to `./testImages/compressed_images`
 3. zipEncrypt.py
     1. get compressed images folder `./testImages/compressed_images`
@@ -16,10 +22,10 @@
     3. zip folder into `./zipped_data/compressedImages.zip`
     4. encrypt folder using password and store as `./zipped_data/compressedImages.zip.enc`
 4. encode.py
-    1. encode `./zipped_data/compressedImages.zip.enc` into base64 chunks 
+    1. encode `./zipped_data/compressedImages.zip.enc` into base64 chunks
     2. save as `encoded_chunks.txt`
 5. transfer over IR
-    1. *** NOT DONE YET*** 
+    1. ***NOT DONE YET***
 6. decode.py
     1. take `encoded_chunks.txt` and decode it into `received_file.zip.enc`
 7. decrypt.py
