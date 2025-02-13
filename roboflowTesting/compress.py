@@ -4,9 +4,9 @@ from PIL import Image
 import zipfile
 
 # Configuration
-source_folder = "./circleOutput"  # Folder you want to copy and compress
-destination_parent = "./testImages"  # Where the compressed folder will be placed
-compressed_folder = "./testImages/compressed_images"  # This folder will hold compressed files
+source_folder = "./dirs/images/output"  # Folder you want to copy and compress
+destination_parent = "./dirs/images"  # Where the compressed folder will be placed
+compressed_folder = "./dirs/images/compressed_images"  # This folder will hold compressed files
 compression_quality = 70  # Adjust quality (1-100), lower means smaller file size
 
 # Supported image formats

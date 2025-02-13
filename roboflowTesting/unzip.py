@@ -2,8 +2,8 @@ import zipfile
 import os
 
 # Configuration
-ZIP_FILE_PATH = "received_file.zip"  # Path to the ZIP file
-EXTRACT_DIR = "./unzippedFIles/"  # Output directory
+ZIP_FILE_PATH = "./dirs/received_file.zip"  # Path to the ZIP file
+EXTRACT_DIR = "./dirs/unzippedFIles/"  # Output directory
 
 def unzip_file():
     """Extracts a ZIP file to a specified directory."""

@@ -8,8 +8,8 @@ project = rf.workspace().project("deathstar-kebsz")
 model = project.version(3).model
 
 # Define directories
-input_dir = "./testImages/input"  # Directory containing input images
-output_dir = "./testImages/output"  # Directory where detected images will be copied
+input_dir = "./dirs/images/input"  # Directory containing input images
+output_dir = "./dirs/images/output"  # Directory where detected images will be copied
 Processed = False
 # Ensure output directory exists
 os.makedirs(output_dir, exist_ok=True)

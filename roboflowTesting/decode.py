@@ -1,8 +1,8 @@
 import base64
 
 # Configuration
-ENCODED_INPUT = "encoded_chunks.txt"  # File containing encoded chunks
-OUTPUT_FILE_PATH = "received_file.zip.enc"  # Output file path
+ENCODED_INPUT = "./dirs/encoded_chunks.txt"  # File containing encoded chunks
+OUTPUT_FILE_PATH = "./dirs/received_file.zip.enc"  # Output file path
 
 def reconstruct_file():
     """Reassembles Base64 chunks and decodes back to the original file."""

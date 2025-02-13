@@ -63,8 +63,8 @@ def process_images_in_folder(source_folder, output_folder):
     print("Processing complete.")
 
 # Set the input folder containing images and output folder for cropped images
-source_folder = './testImages/output'  # Folder containing images to process
-output_folder = './circleOutput'  # Folder to save cropped images
+source_folder = './Dirs/receivedImages'  # Folder containing images to process
+output_folder = './dirs/circleOutput'  # Folder to save cropped images
 
 # Run the script
 process_images_in_folder(source_folder, output_folder)

@@ -4,7 +4,7 @@ import base64
 from AesEverywhere import aes256
 
 # Configuration
-encrypted_file_path = "received_file.zip.enc"  # Path to the encrypted file
+encrypted_file_path = "./dirs/received_file.zip.enc"  # Path to the encrypted file
 decryption_password = "team10"  # Default decryption password
 
 def decrypt_zip(encrypted_file, password):
