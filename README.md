@@ -8,6 +8,7 @@
 
 ### Pi side structure
 
+```
 Dirs/
 ├─ zipped_data/
 ├─ piMain.py
@@ -16,12 +17,15 @@ Dirs/
 │  ├─ input/
 │  ├─ output/
 │  ├─ compressed_images/
+```
 
 ### Serevr Side structure
 
+```
 Dirs/
 ├─ unzippedFiles/
 ├─ circleOutput/
+```
 
 ### Current Workflow
 
