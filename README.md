@@ -4,6 +4,25 @@
 
 ### What is IRIS?
 
+### Folder Structure
+
+### Pi side structure
+
+Dirs/
+├─ zipped_data/
+├─ piMain.py
+├─ circleOutput/
+├─ images/
+│  ├─ input/
+│  ├─ output/
+│  ├─ compressed_images/
+
+### Serevr Side structure
+
+Dirs/
+├─ unzippedFiles/
+├─ circleOutput/
+
 ### Current Workflow
 
 ***Run `install_requirements.py` to get required packages***
