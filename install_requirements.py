@@ -7,7 +7,8 @@ required_packages = [
     "Aes-Everywhere",    # AES encryption
     "roboflow",         # AI model handling
     "opencv-python",    # OpenCV for image processing
-    "numpy"             # Numerical operations
+    "numpy",             # Numerical operations
+    "adafruit-circuitpython-irremote"
 ]
 
 def install_package(package):
