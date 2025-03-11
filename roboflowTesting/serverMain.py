@@ -104,7 +104,7 @@ def process_images_in_folder():
     print("Processing complete.")
     git_commit_and_push()
 
-git_repo_path = "C:/Users/kiese/OneDrive/Documents/snrdes/Snr-Design-IRIS"
+git_repo_path = "../Snr-Design-IRIS"
 
 def git_commit_and_push():
     """Automate Git commit and push workflow after processing images."""
