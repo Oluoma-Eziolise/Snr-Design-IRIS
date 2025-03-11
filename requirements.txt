@@ -1,0 +1,11 @@
+pillow
+Aes-Everywhere
+roboflow
+opencv-python
+numpy
+adafruit-circuitpython-irremote
+pytest-shutil
+zipfile
+roboflow
+subprocess
+time
