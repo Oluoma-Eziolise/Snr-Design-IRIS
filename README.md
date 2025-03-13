@@ -45,22 +45,10 @@ Dirs/
     3. zip folder
         1. zip folder `./dirs/images/compressed_images`
         2. zipped output `./dirs/zipped_data/compressedImages.zip`
-    4. encrypt zip file
-        1. take zip `./dirs/zipped_data/compressedImages.zip`
-        2. encrypt file to `./dirs/zipped_data/compressedImages.zip.enc`
-    5. base64 encode to chunks for sending
-        1. take `./dirs/zipped_data/compressedImages.zip.enc`
-        2. base64 encode folder to `./Dirs/encoded_chunks.txt`
 
 2. ***IR TRANSFER NOT DONE YET***
 
 3. serverMain.py
-    1. decode chunks
-        1. take `./dirs/encoded_chunks.txt`
-        2. decode into zip.enc file `./Dirs/received_file.zip.enc`
-    2. decrypt folder
-        1. take file `./dirs/received_file.zip.enc`
-        2. decrypt to `./dirs/received_file.zip`
     3. unzip file
         1. take file `./dirs/received_file.zip`
         2. unzip to `./Dirs/unzippedFiles`
