@@ -8,7 +8,7 @@
 </head>
 <body>
     <header class="header">
-        <h1>See our Flowers!!!</h1>
+        <h1>IRIS Flower Shop</h1>
     </header>
     <div class="gallery">
         <?php
