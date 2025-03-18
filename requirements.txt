@@ -4,6 +4,5 @@ roboflow
 opencv-python
 numpy
 adafruit-circuitpython-irremote
-
 roboflow
 

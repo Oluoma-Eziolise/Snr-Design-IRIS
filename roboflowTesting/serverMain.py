@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import base64
 import zipfile
@@ -10,8 +11,8 @@ import time
 
 # Configuration
 # ENCODED_INPUT = "./dirs/encoded_chunks.txt"  # File containing encoded chunks
-# ENCRYPTED_FILE_PATH = "./dirs/received_file.zip.enc"  # Encrypted file path
-# DECRYPTION_PASSWORD = "team10"  # Default decryption password
+ENCRYPTED_FILE_PATH = "../dirs/compressedImages.zip.enc"  # Encrypted file path
+DECRYPTION_PASSWORD = "team10"  # Default decryption password
 ZIP_FILE_PATH = "../dirs/received_file.zip"  # Path to the ZIP file
 EXTRACT_DIR = "../dirs/unzippedFiles/"  # Output directory
 SOURCE_FOLDER = '../dirs/unzippedFiles/'  # Folder containing images to process
@@ -35,25 +36,25 @@ OUTPUT_FOLDER = '../dirs/circleOutput'  # Folder to save cropped images
 #         print(f"Error reconstructing file: {e}")
 
 
-# def decrypt_zip():
-#     """Decrypt an AES-256 encrypted ZIP file and restore the original ZIP."""
-#     if not os.path.exists(ENCRYPTED_FILE_PATH):
-#         print(f"Error: Encrypted file '{ENCRYPTED_FILE_PATH}' does not exist.")
-#         sys.exit(1)
+def decrypt_zip():
+    """Decrypt an AES-256 encrypted ZIP file and restore the original ZIP."""
+    if not os.path.exists(ENCRYPTED_FILE_PATH):
+        print(f"Error: Encrypted file '{ENCRYPTED_FILE_PATH}' does not exist.")
+        sys.exit(1)
 
-#     with open(ENCRYPTED_FILE_PATH, 'r', encoding='utf-8') as f:
-#         encrypted_data = f.read()
+    with open(ENCRYPTED_FILE_PATH, 'r', encoding='utf-8') as f:
+        encrypted_data = f.read()
 
-#     try:
-#         decrypted_base64 = aes256.decrypt(encrypted_data, DECRYPTION_PASSWORD)
-#         zip_data = base64.b64decode(decrypted_base64)
-#         decrypted_filename = ENCRYPTED_FILE_PATH.replace(".enc", "")
-#         with open(decrypted_filename, 'wb') as f:
-#             f.write(zip_data)
-#         print(f"Decryption successful! Restored ZIP file: {decrypted_filename}")
-#     except Exception as e:
-#         print(f"Decryption failed: {e}")
-#         sys.exit(1)
+    try:
+        decrypted_base64 = aes256.decrypt(encrypted_data, DECRYPTION_PASSWORD)
+        zip_data = base64.b64decode(decrypted_base64)
+        decrypted_filename = ENCRYPTED_FILE_PATH.replace(".enc", "")
+        with open(decrypted_filename, 'wb') as f:
+            f.write(zip_data)
+        print(f"Decryption successful! Restored ZIP file: {decrypted_filename}")
+    except Exception as e:
+        print(f"Decryption failed: {e}")
+        sys.exit(1)
 
 
 def unzip_file():
@@ -138,6 +139,6 @@ def git_commit_and_push():
 
 if __name__ == "__main__":
     # reconstruct_file()
-    # decrypt_zip()
+    decrypt_zip()
     unzip_file()
     process_images_in_folder()
