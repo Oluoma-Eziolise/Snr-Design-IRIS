@@ -12,10 +12,10 @@ import time
 # ENCODED_INPUT = "./dirs/encoded_chunks.txt"  # File containing encoded chunks
 # ENCRYPTED_FILE_PATH = "./dirs/received_file.zip.enc"  # Encrypted file path
 # DECRYPTION_PASSWORD = "team10"  # Default decryption password
-ZIP_FILE_PATH = "./dirs/received_file.zip"  # Path to the ZIP file
-EXTRACT_DIR = "./dirs/unzippedFiles/"  # Output directory
-SOURCE_FOLDER = './dirs/unzippedFiles/'  # Folder containing images to process
-OUTPUT_FOLDER = './dirs/circleOutput'  # Folder to save cropped images
+ZIP_FILE_PATH = "../dirs/received_file.zip"  # Path to the ZIP file
+EXTRACT_DIR = "../dirs/unzippedFiles/"  # Output directory
+SOURCE_FOLDER = '../dirs/unzippedFiles/'  # Folder containing images to process
+OUTPUT_FOLDER = '../dirs/circleOutput'  # Folder to save cropped images
 
 
 # def reconstruct_file():

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import shutil
 import zipfile
@@ -12,10 +13,10 @@ project = rf.workspace().project("deathstar-kebsz")
 model = project.version(3).model
 
 # Directories
-input_dir = "./dirs/images/input"
-output_dir = "./dirs/images/output"
-compressed_folder = "./dirs/images/compressed_images"
-zip_destination_parent = "./dirs/zipped_data"
+input_dir = "../dirs/images/input"
+output_dir = "../dirs/images/output"
+compressed_folder = "../dirs/images/compressed_images"
+zip_destination_parent = "../dirs/zipped_data"
 zip_filename = "compressedImages.zip"
 zip_file_path = os.path.join(zip_destination_parent, zip_filename)
 # encryption_password = "team10"
@@ -41,6 +42,12 @@ def image_detection():
             except Exception as e:
                 print(f"[ERROR] {filename}: {e}")
     print("Image Detection Complete!")
+    # Wait for user input to continue
+    while True:
+        user_input = input("Please verify images and type 'continue' to proceed: ").strip().lower()
+        if user_input == "continue":
+            break
+        print("Invalid input. Please type 'continue' exactly.")
 
 # Step 2: Compress Images
 def compress_image(image_path):
@@ -98,3 +105,4 @@ zip_folder()
 # encrypted_file = encrypt_zip()
 # encode_file(encrypted_file)
 print("Workflow Complete!")
+input("Press Enter to continue...")

@@ -39,6 +39,7 @@ Dirs/
         2. get images from `./dirs/images/input`
         3. run roboflow image detection model using API
         4. output images to `./dirs/images/output`
+        5. hold for user verification
     2. compression
         1. take images from `./dirs/images/output`
         2. compress images to `./dirs/images/compressed_images`
@@ -49,15 +50,17 @@ Dirs/
 2. ***IR TRANSFER NOT DONE YET***
 
 3. serverMain.py
-    3. unzip file
+    1. unzip file
         1. take file `./dirs/received_file.zip`
         2. unzip to `./Dirs/unzippedFiles`
-    4. detect and crop red circles
+    2. detect and crop red circles
         1. take `./Dirs/unzippedFiles`
         2. run through all images and detect red circles
         3. crop to red circles
         4. ouput to `./Dirs/circleOutput`
+    3. git commit and push images to github
 
 4. send images to server and display ***NOT DONE YET***
+    1. github workflow to auto update server to dispaly images
 
 5. display website from mobile app ***NOT DONE YET***
