@@ -11,13 +11,15 @@ import time
 
 # Configuration
 # ENCODED_INPUT = "./dirs/encoded_chunks.txt"  # File containing encoded chunks
-ENCRYPTED_FILE_PATH = "../dirs/compressedImages.zip.enc"  # Encrypted file path
+ENCRYPTED_FILE_PATH = "../dirs/zipped_data/compressedImages.zip.enc"  # Encrypted file path
 DECRYPTION_PASSWORD = "team10"  # Default decryption password
-ZIP_FILE_PATH = "../dirs/received_file.zip"  # Path to the ZIP file
+ZIP_FILE_PATH = "../dirs/zipped_data/compressedImages.zip"  # Path to the ZIP file
 EXTRACT_DIR = "../dirs/unzippedFiles/"  # Output directory
 SOURCE_FOLDER = '../dirs/unzippedFiles/'  # Folder containing images to process
-OUTPUT_FOLDER = '../dirs/circleOutput'  # Folder to save cropped images
-
+OUTPUT_FOLDER = '../dirs/circleOutput/'  # Folder to save cropped images
+# Global counter for saving circles
+circle_counter = 1
+MAX_CIRCLES = 10  # Limit the number of saved circles to 10
 
 # def reconstruct_file():
 #     """Reassembles Base64 chunks and decodes back to the original file."""
@@ -52,6 +54,7 @@ def decrypt_zip():
         with open(decrypted_filename, 'wb') as f:
             f.write(zip_data)
         print(f"Decryption successful! Restored ZIP file: {decrypted_filename}")
+        input("decrypt")
     except Exception as e:
         print(f"Decryption failed: {e}")
         sys.exit(1)
@@ -68,30 +71,68 @@ def unzip_file():
         with zipfile.ZipFile(ZIP_FILE_PATH, 'r') as zip_ref:
             zip_ref.extractall(EXTRACT_DIR)
             print(f"Extracted {ZIP_FILE_PATH} to {EXTRACT_DIR}")
+            input("zipped")
     except zipfile.BadZipFile:
         print("Error: Not a valid ZIP file!")
+        
 
 
 def detect_and_crop_red_circles(image_path, output_folder):
     """Detect and crop red circles from an image."""
+    global circle_counter  # Use global counter to track saved images
+
+    print(f"Processing image: {image_path}")  # Debugging output
+
     image = cv2.imread(image_path)
+    if image is None:
+        print(f"Error: Could not read image {image_path}")
+        return
+
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     lower_red1, upper_red1 = np.array([0, 120, 70]), np.array([10, 255, 255])
     lower_red2, upper_red2 = np.array([170, 120, 70]), np.array([180, 255, 255])
     mask1, mask2 = cv2.inRange(hsv, lower_red1, upper_red1), cv2.inRange(hsv, lower_red2, upper_red2)
     red_mask = mask1 + mask2
     red_gray = cv2.GaussianBlur(red_mask, (9, 9), 2)
-    circles = cv2.HoughCircles(red_gray, cv2.HOUGH_GRADIENT, dp=1.2, minDist=50, param1=100, param2=30, minRadius=20, maxRadius=60)
+    
+    circles = cv2.HoughCircles(
+        red_gray, cv2.HOUGH_GRADIENT, dp=1.2, minDist=50,
+        param1=100, param2=30, minRadius=20, maxRadius=60
+    )
 
     if circles is not None:
         circles = np.round(circles[0, :]).astype("int")
         for i, (x, y, r) in enumerate(circles):
+            if circle_counter > MAX_CIRCLES:  # Stop after saving 10 circles
+                print("Max circle count reached. Stopping...")
+                return
+
             x_min, x_max = max(0, x - r), min(image.shape[1], x + r)
             y_min, y_max = max(0, y - r), min(image.shape[0], y + r)
             cropped_circle = image[y_min:y_max, x_min:x_max]
-            cropped_circle_path = os.path.join(output_folder, f"cropped_circle_{i}_{os.path.basename(image_path)}")
-            cv2.imwrite(cropped_circle_path, cropped_circle)
-            print(f"[SAVED] Cropped circle saved: {cropped_circle_path}")
+            
+            # Ensure filename is correct
+            cropped_circle_path = os.path.join(output_folder, f"circle_{circle_counter}.png")
+
+            # Debugging output to verify the path
+            print(f"Saving cropped circle: {cropped_circle_path}")
+
+            # Ensure the output directory exists
+            os.makedirs(output_folder, exist_ok=True)
+
+            # Save the cropped circle
+            success = cv2.imwrite(cropped_circle_path, cropped_circle)
+
+            if success:
+                print(f"[SAVED] Cropped circle {circle_counter}: {cropped_circle_path}")
+            else:
+                print(f"[ERROR] Failed to save image: {cropped_circle_path}")
+
+            circle_counter += 1  # Increment counter after saving
+
+    else:
+        print(f"No circles detected in {image_path}")
+
 
 
 def process_images_in_folder():
@@ -103,6 +144,7 @@ def process_images_in_folder():
             print(f"Processing {img_filename}...")
             detect_and_crop_red_circles(img_path, OUTPUT_FOLDER)
     print("Processing complete.")
+    input("press2")
     git_commit_and_push()
 
 git_repo_path = "../Snr-Design-IRIS"
@@ -130,15 +172,17 @@ def git_commit_and_push():
         # Push changes to remote repository
         subprocess.run(["git", "push", "origin", "main"], check=True)  # Change 'main' if needed
         print("Changes pushed successfully!")
+        input("press3")
 
     except subprocess.CalledProcessError as e:
         print(f"Git error: {e}")
         print("Ensure that Git is set up properly with authentication (SSH or HTTPS).")
     except Exception as e:
         print(f" Unexpected error: {e}")
+    
+
 
 if __name__ == "__main__":
-    # reconstruct_file()
     decrypt_zip()
     unzip_file()
     process_images_in_folder()

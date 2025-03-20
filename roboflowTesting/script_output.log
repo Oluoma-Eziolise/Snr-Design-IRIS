@@ -1,0 +1,11 @@
+Script started...
+
+Traceback (most recent call last):
+  File "C:\Users\kiese\OneDrive\Documents\snrdes\Snr-Design-IRIS\roboflowTesting\serverMain.py", line 161, in <module>
+    process_images_in_folder()
+  File "C:\Users\kiese\OneDrive\Documents\snrdes\Snr-Design-IRIS\roboflowTesting\serverMain.py", line 118, in process_images_in_folder
+    detect_and_crop_red_circles(img_path, OUTPUT_FOLDER)
+  File "C:\Users\kiese\OneDrive\Documents\snrdes\Snr-Design-IRIS\roboflowTesting\serverMain.py", line 106, in detect_and_crop_red_circles
+    cv2.imwrite(cropped_circle_path, cropped_circle)
+cv2.error: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgcodecs\src\loadsave.cpp:708: error: (-2:Unspecified error) could not find a writer for the specified extension in function 'cv::imwrite_'
+
