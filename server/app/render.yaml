@@ -5,3 +5,7 @@ services:
     static_site:
       build_command: npm install && npm run build
       publish_directory: dist/IRIS-app-Test  # Change "your-app-name" to your actual app name
+    routes:
+      - src: /*
+        dest: /index.html
+        status: 200
