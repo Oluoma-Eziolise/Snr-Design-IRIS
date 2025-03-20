@@ -3,7 +3,7 @@ services:
     name: IRIS-app-Test
     env: static
     static_site:
-      build_command: npm install && npm run build
+      build_command: npm install && npm run build && ls dist
       publish_directory: dist/IRIS-app-Test  # Change "your-app-name" to your actual app name
     routes:
       - src: /*
