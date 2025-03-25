@@ -8,6 +8,7 @@ import numpy as np
 from AesEverywhere import aes256
 import subprocess
 import time
+from pathlib import Path
 
 # Configuration
 # ENCODED_INPUT = "./dirs/encoded_chunks.txt"  # File containing encoded chunks
@@ -36,7 +37,14 @@ MAX_CIRCLES = 10  # Limit the number of saved circles to 10
 #         print(f"File successfully reconstructed as {ENCRYPTED_FILE_PATH}")
 #     except Exception as e:
 #         print(f"Error reconstructing file: {e}")
-
+def find_git_root(path):
+    """Finds the nearest parent directory with a .git folder."""
+    path = Path(path).resolve()
+    while not (path / '.git').exists():
+        if path.parent == path:
+            raise FileNotFoundError(".git directory not found in any parent folder.")
+        path = path.parent
+    return str(path)
 
 def decrypt_zip():
     """Decrypt an AES-256 encrypted ZIP file and restore the original ZIP."""
@@ -147,30 +155,32 @@ def process_images_in_folder():
     input("press2")
     git_commit_and_push()
 
-git_repo_path = "../Snr-Design-IRIS"
 
+git_repo_path = ".."
+print("Git repo path detected as:", git_repo_path)
 def git_commit_and_push():
     """Automate Git commit and push workflow after processing images."""
     try:
-        os.chdir(git_repo_path)  # Navigate to the Git repository
+        script_dir = Path(__file__).resolve().parent
+        repo_root = script_dir.parent
+        git_repo_path = str(repo_root)
+
         print("Navigating to Git repository...")
 
-        # Check if Git is initialized
-        if not os.path.exists(os.path.join(git_repo_path, ".git")):
+        if not (repo_root / ".git").exists():
             print("Error: No Git repository found in the specified path.")
             return
 
-        # Add only new/modified files
+        os.chdir(git_repo_path)
+
         subprocess.run(["git", "add", "."], check=True)
         print("Staged changes for commit.")
 
-        # Commit with a timestamp message
         commit_message = f"Auto-update: Added processed circle images - {time.strftime('%Y-%m-%d %H:%M:%S')}"
         subprocess.run(["git", "commit", "-m", commit_message], check=True)
         print("Committed changes.")
 
-        # Push changes to remote repository
-        subprocess.run(["git", "push", "origin", "main"], check=True)  # Change 'main' if needed
+        subprocess.run(["git", "push", "origin", "main"], check=True)
         print("Changes pushed successfully!")
         input("press3")
 
@@ -178,8 +188,8 @@ def git_commit_and_push():
         print(f"Git error: {e}")
         print("Ensure that Git is set up properly with authentication (SSH or HTTPS).")
     except Exception as e:
-        print(f" Unexpected error: {e}")
-    
+        print(f"Unexpected error: {e}")
+    input("test")
 
 
 if __name__ == "__main__":
