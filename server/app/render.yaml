@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: Test
-    env: node
-    plan: free  # Use the free tier
-    build_command: npm install && npm run build --prod
-    start_command: npx serve -s dist/Test
-    publish_directory: dist
