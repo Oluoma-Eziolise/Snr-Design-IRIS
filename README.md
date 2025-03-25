@@ -64,5 +64,7 @@ Dirs/
     1. ex: ![circle_1](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_1.png)
     2. ![Circle_2](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_2.png)
     3. ![Circle_3](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_3.png)
+    4. ![Circle_4](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_4.png)
+    5. ![Circle_5](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_5.png)
 
 5. display website from mobile app ***NOT DONE YET***
