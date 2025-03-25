@@ -61,6 +61,8 @@ Dirs/
     3. git commit and push images to github
 
 4. send images to server and display ***NOT DONE YET***
-    1. ex: ![alt text](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_1.png)
+    1. ex: ![circle_1](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_1.png)
+    2. ![Circle_2](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_2.png)
+    3. ![Circle_3](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/blob/main/Dirs/circleOutput/circle_3.png)
 
 5. display website from mobile app ***NOT DONE YET***
