@@ -61,6 +61,6 @@ Dirs/
     3. git commit and push images to github
 
 4. send images to server and display ***NOT DONE YET***
-    1. github workflow to auto update server to dispaly images
+    1. ex: ![alt text](https://github.com/Oluoma-Eziolise/Snr-Design-IRIS/tree/main/Dirs/circleOutput/circle_1.png)
 
 5. display website from mobile app ***NOT DONE YET***
