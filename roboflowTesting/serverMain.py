@@ -17,7 +17,7 @@ DECRYPTION_PASSWORD = "team10"  # Default decryption password
 ZIP_FILE_PATH = "../dirs/zipped_data/compressedImages.zip"  # Path to the ZIP file
 EXTRACT_DIR = "../dirs/unzippedFiles/"  # Output directory
 SOURCE_FOLDER = '../dirs/unzippedFiles/'  # Folder containing images to process
-OUTPUT_FOLDER = '../dirs/circleOutput/'  # Folder to save cropped images
+OUTPUT_FOLDER = '../server/images/'  # Folder to save cropped images
 # Global counter for saving circles
 circle_counter = 1
 MAX_CIRCLES = 10  # Limit the number of saved circles to 10
