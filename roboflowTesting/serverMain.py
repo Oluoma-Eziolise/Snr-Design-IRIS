@@ -193,6 +193,14 @@ def git_commit_and_push():
 
 
 if __name__ == "__main__":
+    print("Waiting for encrypted file to appear...")
+
+    # Wait for the encrypted file to exist
+    while not os.path.exists(ENCRYPTED_FILE_PATH):
+        print(f"File not found: {ENCRYPTED_FILE_PATH}. Retrying in 5 seconds...")
+        time.sleep(5)
+
+    print("Encrypted file detected. Starting process...\n")
     decrypt_zip()
     unzip_file()
     process_images_in_folder()
