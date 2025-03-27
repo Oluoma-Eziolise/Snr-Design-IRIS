@@ -62,7 +62,7 @@ def decrypt_zip():
         with open(decrypted_filename, 'wb') as f:
             f.write(zip_data)
         print(f"Decryption successful! Restored ZIP file: {decrypted_filename}")
-        input("decrypt")
+
     except Exception as e:
         print(f"Decryption failed: {e}")
         sys.exit(1)
@@ -79,7 +79,7 @@ def unzip_file():
         with zipfile.ZipFile(ZIP_FILE_PATH, 'r') as zip_ref:
             zip_ref.extractall(EXTRACT_DIR)
             print(f"Extracted {ZIP_FILE_PATH} to {EXTRACT_DIR}")
-            input("zipped")
+
     except zipfile.BadZipFile:
         print("Error: Not a valid ZIP file!")
         
@@ -152,7 +152,7 @@ def process_images_in_folder():
             print(f"Processing {img_filename}...")
             detect_and_crop_red_circles(img_path, OUTPUT_FOLDER)
     print("Processing complete.")
-    input("press2")
+
     git_commit_and_push()
 
 
@@ -189,7 +189,7 @@ def git_commit_and_push():
         print("Ensure that Git is set up properly with authentication (SSH or HTTPS).")
     except Exception as e:
         print(f"Unexpected error: {e}")
-    input("test")
+    
 
 
 if __name__ == "__main__":
