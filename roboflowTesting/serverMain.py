@@ -182,7 +182,7 @@ def git_commit_and_push():
 
         subprocess.run(["git", "push", "origin", "main"], check=True)
         print("Changes pushed successfully!")
-        input("press3")
+        
 
     except subprocess.CalledProcessError as e:
         print(f"Git error: {e}")
