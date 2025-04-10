@@ -20,7 +20,7 @@ zip_destination_parent = "../dirs/zipped_data"
 zip_filename = "compressedImages.zip"
 zip_file_path = os.path.join(zip_destination_parent, zip_filename)
 encryption_password = "team10"
-# encoded_output = "./dirs/encoded_chunks.txt"
+encoded_output_path = os.path.join(zip_destination_parent, "encoded_chunks.txt")
 
 # Compression settings
 compression_quality = 70
@@ -87,22 +87,22 @@ def encrypt_zip():
     print("Encryption Complete!")
     return encrypted_filename
 
-# # Step 4: Encode File
-# def encode_file(encrypted_filename):
-#     with open(encrypted_filename, "rb") as file:
-#         file_data = file.read()
-#     encoded_data = base64.b64encode(file_data).decode()
-#     chunks = [encoded_data[i:i+64] for i in range(0, len(encoded_data), 64)]
-#     with open(encoded_output, "w") as output_file:
-#         for chunk in chunks:
-#             output_file.write(chunk + "\n")
-#     print(f"Encoding Complete! {len(chunks)} chunks written.")
+# Step 4: Encode Encrypted File to Base64 and Save for Reconstruction
+def save_encoded_chunks(encrypted_file_path, output_txt_path):
+    with open(encrypted_file_path, 'rb') as f:
+        encrypted_data = f.read()
+        encoded = base64.b64encode(encrypted_data).decode('utf-8')
+        with open(output_txt_path, 'w', encoding='utf-8') as out:
+            out.write(encoded)
+        print(f"Encoded data written to {output_txt_path}")
+
 
 # Run the workflow
 image_detection()
 compress_folder()
 zip_folder()
 encrypted_file = encrypt_zip()
-# encode_file(encrypted_file)
+save_encoded_chunks(encrypted_file, encoded_output_path)
+
 print("Workflow Complete!")
 input("Press Enter to continue...")

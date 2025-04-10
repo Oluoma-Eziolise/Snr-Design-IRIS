@@ -21,22 +21,23 @@ OUTPUT_FOLDER = '../server/images/'  # Folder to save cropped images
 # Global counter for saving circles
 circle_counter = 1
 MAX_CIRCLES = 10  # Limit the number of saved circles to 10
+ENCODED_INPUT = "../dirs/zipped_data/encoded_chunks.txt"  # File containing base64-encoded encrypted .zip
+def reconstruct_file():
+    """Reassembles Base64-encoded data and writes it as the encrypted .zip.enc file."""
+    try:
+        with open(ENCODED_INPUT, "r", encoding="utf-8") as input_file:
+            encoded_data = input_file.read().strip()
 
-# def reconstruct_file():
-#     """Reassembles Base64 chunks and decodes back to the original file."""
-#     try:
-#         with open(ENCODED_INPUT, "r") as input_file:
-#             chunks = input_file.readlines()
-        
-#         encoded_data = "".join(chunk.strip() for chunk in chunks)  # Reassemble chunks
-#         file_data = base64.b64decode(encoded_data)  # Decode Base64
+        file_data = base64.b64decode(encoded_data)
 
-#         with open(ENCRYPTED_FILE_PATH, "wb") as output_file:
-#             output_file.write(file_data)
+        with open(ENCRYPTED_FILE_PATH, "wb") as output_file:
+            output_file.write(file_data)
 
-#         print(f"File successfully reconstructed as {ENCRYPTED_FILE_PATH}")
-#     except Exception as e:
-#         print(f"Error reconstructing file: {e}")
+        print(f" Reconstructed encrypted file: {ENCRYPTED_FILE_PATH}")
+
+    except Exception as e:
+        print(f" Error reconstructing file: {e}")
+        sys.exit(1)
 def find_git_root(path):
     """Finds the nearest parent directory with a .git folder."""
     path = Path(path).resolve()
@@ -193,14 +194,15 @@ def git_commit_and_push():
 
 
 if __name__ == "__main__":
-    print("Waiting for encrypted file to appear...")
+    print("Waiting for encoded chunk file to appear...")
 
-    # Wait for the encrypted file to exist
-    while not os.path.exists(ENCRYPTED_FILE_PATH):
-        print(f"File not found: {ENCRYPTED_FILE_PATH}. Retrying in 5 seconds...")
+    # Wait for the encoded chunks to be written (e.g., via IR or Pi)
+    while not os.path.exists(ENCODED_INPUT):
+        print(f"File not found: {ENCODED_INPUT}. Retrying in 5 seconds...")
         time.sleep(5)
 
-    print("Encrypted file detected. Starting process...\n")
+    print("Encoded chunk file detected. Reconstructing encrypted .zip...\n")
+    reconstruct_file()
     decrypt_zip()
-    unzip_file()
-    process_images_in_folder()
+    git_commit_and_push()
+    input("input")
