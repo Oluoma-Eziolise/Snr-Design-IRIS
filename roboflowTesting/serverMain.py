@@ -206,5 +206,4 @@ if __name__ == "__main__":
     decrypt_zip()
     unzip_file()
     process_images_in_folder()
-    git_commit_and_push()
     input("input")
