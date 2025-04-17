@@ -204,5 +204,7 @@ if __name__ == "__main__":
     print("Encoded chunk file detected. Reconstructing encrypted .zip...\n")
     reconstruct_file()
     decrypt_zip()
+    unzip_file()
+    process_images_in_folder()
     git_commit_and_push()
     input("input")
